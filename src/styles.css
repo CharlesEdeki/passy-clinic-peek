@@ -65,39 +65,39 @@
 
 :root {
   --radius: 0.625rem;
-  /* Passy Dental Clinic — Clinical Editorial palette */
+  /* Passy Dental Clinic — Clinical Editorial palette: navy blue on warm cream */
   --background: hsl(40 20% 98%);
-  --foreground: hsl(200 20% 12%);
+  --foreground: hsl(210 30% 12%);
   --card: hsl(0 0% 100%);
-  --card-foreground: hsl(200 20% 12%);
+  --card-foreground: hsl(210 30% 12%);
   --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(200 20% 12%);
-  --primary: hsl(165 35% 35%);
+  --popover-foreground: hsl(210 30% 12%);
+  --primary: oklch(0.32 0.07 258);
   --primary-foreground: hsl(40 20% 98%);
   --secondary: hsl(40 15% 95%);
-  --secondary-foreground: hsl(200 20% 12%);
+  --secondary-foreground: hsl(210 30% 12%);
   --muted: hsl(40 15% 95%);
-  --muted-foreground: hsl(200 10% 45%);
-  --accent: hsl(165 35% 35% / 0.08);
-  --accent-foreground: hsl(165 35% 25%);
+  --muted-foreground: hsl(210 10% 45%);
+  --accent: oklch(0.32 0.07 258 / 0.08);
+  --accent-foreground: oklch(0.32 0.07 258);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: hsl(200 10% 12% / 0.08);
-  --input: hsl(200 10% 12% / 0.08);
-  --ring: hsl(165 35% 35%);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --border: hsl(210 30% 12% / 0.08);
+  --input: hsl(210 30% 12% / 0.08);
+  --ring: oklch(0.32 0.07 258);
+  --chart-1: oklch(0.32 0.07 258);
+  --chart-2: oklch(0.45 0.08 258);
+  --chart-3: oklch(0.55 0.09 258);
+  --chart-4: oklch(0.65 0.08 258);
+  --chart-5: oklch(0.75 0.07 258);
   --sidebar: oklch(0.984 0.003 247.858);
   --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary: oklch(0.32 0.07 258);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --sidebar-accent: oklch(0.968 0.007 247.896);
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sidebar-ring: oklch(0.32 0.07 258);
 }
 
 .dark {
