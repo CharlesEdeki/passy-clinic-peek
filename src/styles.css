@@ -59,6 +59,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
   --font-display: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
@@ -85,6 +87,8 @@
   --border: hsl(210 30% 12% / 0.08);
   --input: hsl(210 30% 12% / 0.08);
   --ring: oklch(0.32 0.07 258);
+  --whatsapp: oklch(0.65 0.22 142);
+  --whatsapp-foreground: hsl(0 0% 100%);
   --chart-1: oklch(0.32 0.07 258);
   --chart-2: oklch(0.45 0.08 258);
   --chart-3: oklch(0.55 0.09 258);
@@ -120,6 +124,8 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.85 0.05 250);
+  --whatsapp: oklch(0.65 0.22 142);
+  --whatsapp-foreground: hsl(0 0% 100%);
   --chart-1: oklch(0.85 0.05 250);
   --chart-2: oklch(0.72 0.06 250);
   --chart-3: oklch(0.62 0.07 250);
