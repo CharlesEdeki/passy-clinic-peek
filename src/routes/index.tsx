@@ -313,6 +313,26 @@ function Index() {
           </div>
         </div>
       </footer>
+
+      {/* WhatsApp click-to-chat */}
+      <a
+        href="https://wa.me/2347067164269"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Passy Dental Clinic on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 pl-4 pr-5 py-3 bg-whatsapp text-whatsapp-foreground rounded-full shadow-2xl hover:scale-105 hover:shadow-whatsapp/30 transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="size-6"
+          aria-hidden="true"
+        >
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.521.074-.797.372-.275.297-1.05 1.025-1.05 2.5s1.075 2.901 1.224 3.099c.149.198 2.113 3.225 5.117 4.521.714.308 1.272.493 1.706.631.716.227 1.37.195 1.885.118.574-.084 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-11.405c-3.141-.029-5.734 2.536-5.763 5.732-.013 1.131.294 2.234.872 3.198l-1.402 5.11 5.229-1.372c1.003.546 2.131.836 3.281.848h.003c3.141 0 5.736-2.576 5.764-5.774.028-3.142-2.535-5.734-5.757-5.763z" />
+        </svg>
+        <span className="font-semibold text-sm hidden sm:inline">Chat on WhatsApp</span>
+      </a>
     </div>
   );
 }
