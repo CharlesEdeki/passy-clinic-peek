@@ -286,9 +286,9 @@ function Index() {
               />
               <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-8 rounded-2xl shadow-xl hidden md:block">
                 <p className="font-[JetBrains_Mono,monospace] text-[10px] uppercase tracking-widest opacity-70 mb-1">
-                  Call Us Directly
+                  Call or WhatsApp
                 </p>
-                <p className="text-2xl font-bold tracking-tight">+234 800 000 0000</p>
+                <p className="text-2xl font-bold tracking-tight">+234 706 716 4269</p>
               </div>
             </div>
           </div>
