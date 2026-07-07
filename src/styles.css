@@ -87,6 +87,8 @@
   --border: hsl(210 30% 12% / 0.08);
   --input: hsl(210 30% 12% / 0.08);
   --ring: oklch(0.32 0.07 258);
+  --whatsapp: oklch(0.65 0.22 142);
+  --whatsapp-foreground: hsl(0 0% 100%);
   --chart-1: oklch(0.32 0.07 258);
   --chart-2: oklch(0.45 0.08 258);
   --chart-3: oklch(0.55 0.09 258);
