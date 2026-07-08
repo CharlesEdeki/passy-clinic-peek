@@ -316,7 +316,7 @@ function Index() {
 
       {/* WhatsApp click-to-chat */}
       <a
-        href="https://wa.me/2347067164269"
+        href="https://api.whatsapp.com/send?phone=2347067164269&text=Hello%20Passy%20Dental%20Clinic%2C%20I%27d%20like%20to%20book%20an%20appointment."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Passy Dental Clinic on WhatsApp"
