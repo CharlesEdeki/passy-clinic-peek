@@ -388,3 +388,168 @@ function Index() {
     </div>
   );
 }
+
+function AppointmentSection() {
+  const services = [
+    "General Dentistry",
+    "Teeth Whitening",
+    "Dental Implants",
+    "Orthodontics / Braces",
+    "Pediatric Care",
+    "Deep Cleaning",
+    "Other",
+  ];
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    service: services[0],
+    date: "",
+    hmo: "",
+    notes: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const lines = [
+      `Hello Passy Dental Clinic, I'd like to book an appointment.`,
+      ``,
+      `Name: ${form.name}`,
+      `Phone: ${form.phone}`,
+      `Service: ${form.service}`,
+      form.date ? `Preferred date: ${form.date}` : null,
+      form.hmo ? `HMO: ${form.hmo}` : null,
+      form.notes ? `Notes: ${form.notes}` : null,
+    ].filter(Boolean);
+    const text = encodeURIComponent(lines.join("\n"));
+    window.open(
+      `https://api.whatsapp.com/send?phone=2347067164269&text=${text}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
+  const inputCls =
+    "w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition";
+
+  return (
+    <section id="appointment" className="py-24">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="lg:sticky lg:top-24">
+            <p className="font-[JetBrains_Mono,monospace] text-xs text-brand-red uppercase tracking-widest mb-4">
+              Book Appointment
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight mb-6">
+              Reserve your visit in under a minute.
+            </h2>
+            <p className="text-muted-foreground mb-8 max-w-md">
+              Fill in your details and we'll confirm your slot on WhatsApp. Our team responds within business hours (Mon–Sat, 8am–6pm).
+            </p>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <span className="size-1.5 rounded-full bg-primary" />
+                <span>Same-day slots often available</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="size-1.5 rounded-full bg-brand-red" />
+                <span>HMO enrolees welcome</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="size-1.5 rounded-full bg-primary" />
+                <span>Family-friendly & pediatric care</span>
+              </div>
+            </div>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="bg-card border border-border rounded-[32px] p-8 md:p-10 space-y-5 shadow-sm"
+          >
+            <div className="grid sm:grid-cols-2 gap-5">
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">Full Name</span>
+                <input
+                  required
+                  maxLength={80}
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Jane Doe"
+                  className={inputCls}
+                />
+              </label>
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">Phone</span>
+                <input
+                  required
+                  maxLength={20}
+                  type="tel"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  placeholder="+234 ..."
+                  className={inputCls}
+                />
+              </label>
+            </div>
+            <label className="block">
+              <span className="block text-xs font-bold uppercase tracking-widest mb-2">Service</span>
+              <select
+                value={form.service}
+                onChange={(e) => setForm({ ...form, service: e.target.value })}
+                className={inputCls}
+              >
+                {services.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">Preferred Date</span>
+                <input
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
+                  className={inputCls}
+                />
+              </label>
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">HMO (optional)</span>
+                <input
+                  type="text"
+                  maxLength={60}
+                  value={form.hmo}
+                  onChange={(e) => setForm({ ...form, hmo: e.target.value })}
+                  placeholder="e.g. Grooming Health"
+                  className={inputCls}
+                />
+              </label>
+            </div>
+            <label className="block">
+              <span className="block text-xs font-bold uppercase tracking-widest mb-2">Notes</span>
+              <textarea
+                rows={4}
+                maxLength={500}
+                value={form.notes}
+                onChange={(e) => setForm({ ...form, notes: e.target.value })}
+                placeholder="Anything we should know?"
+                className={inputCls}
+              />
+            </label>
+            <button
+              type="submit"
+              className="w-full px-6 py-4 rounded-2xl bg-primary text-primary-foreground font-bold text-lg hover:shadow-xl hover:shadow-primary/20 transition-all"
+            >
+              Send Appointment Request
+            </button>
+            <p className="text-xs text-muted-foreground text-center">
+              Submitting opens WhatsApp with your details pre-filled to +234 706 716 4269.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
