@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import clinicHero from "@/assets/clinic-hero.jpg";
 import clinicDentist from "@/assets/clinic-dentist.jpg";
 import clinicMap from "@/assets/clinic-map.jpg";
