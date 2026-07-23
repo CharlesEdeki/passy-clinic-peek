@@ -236,6 +236,55 @@ function Index() {
       </section>
 
       {/* Location */}
+      {/* HMO Partners */}
+      <section id="hmo" className="py-24 bg-card border-y border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-14">
+            <p className="font-[JetBrains_Mono,monospace] text-xs text-brand-red uppercase tracking-widest mb-4">
+              HMO Partners
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight mb-4">
+              Covered by your health plan.
+            </h2>
+            <p className="text-muted-foreground">
+              We work with leading Health Maintenance Organisations to make quality dental care accessible. New partnerships are added regularly — reach out if your HMO isn't listed.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="relative p-8 rounded-3xl border border-border bg-background flex items-center justify-between gap-6">
+              <div>
+                <p className="font-[JetBrains_Mono,monospace] text-[10px] uppercase tracking-widest text-primary/70 mb-2">
+                  Active Partner
+                </p>
+                <h3 className="text-2xl font-bold tracking-tight">Grooming Health HMO</h3>
+                <p className="text-sm text-muted-foreground mt-2">Full dental benefits accepted for enrolees.</p>
+              </div>
+              <span className="shrink-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider">
+                <span className="size-2 rounded-full bg-primary" />
+                Live
+              </span>
+            </div>
+            <div className="relative p-8 rounded-3xl border border-dashed border-border bg-background/60 flex items-center justify-between gap-6">
+              <div>
+                <p className="font-[JetBrains_Mono,monospace] text-[10px] uppercase tracking-widest text-brand-red/80 mb-2">
+                  Coming Soon
+                </p>
+                <h3 className="text-2xl font-bold tracking-tight">Reliance HMO</h3>
+                <p className="text-sm text-muted-foreground mt-2">Partnership in view — coverage rolling out shortly.</p>
+              </div>
+              <span className="shrink-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 text-brand-red text-[11px] font-bold uppercase tracking-wider">
+                <span className="size-2 rounded-full bg-brand-red" />
+                In View
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Appointment */}
+      <AppointmentSection />
+
+      {/* Location */}
       <section id="location" className="py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-card rounded-[40px] border border-border p-8 md:p-16 grid lg:grid-cols-2 gap-16">
