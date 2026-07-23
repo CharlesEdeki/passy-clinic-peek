@@ -72,10 +72,12 @@ function Index() {
           <div className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
             <a href="#services" className="hover:text-primary transition-colors">Services</a>
             <a href="#about" className="hover:text-primary transition-colors">Our Practice</a>
+            <a href="#hmo" className="hover:text-primary transition-colors">HMO Partners</a>
+            <a href="#appointment" className="hover:text-primary transition-colors">Book</a>
             <a href="#location" className="hover:text-primary transition-colors">Location</a>
           </div>
           <a
-            href="#location"
+            href="#appointment"
             className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Book Visit
