@@ -89,14 +89,14 @@ function Index() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider mb-8">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-red" />
               </span>
               Now Welcoming Patients in Isolo
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-balance leading-[0.9] mb-8">
               Exceptional dental care at{" "}
-              <span className="text-primary">Jakande Gate.</span>
+              <span className="text-brand-red">Jakande Gate.</span>
             </h1>
             <p className="text-xl text-muted-foreground text-pretty max-w-xl mb-10 leading-relaxed">
               Passy Dental Clinic combines modern technology with a gentle touch. Located at Crystall Computer &amp; Shopping Mall, we bring world-class dentistry to the heart of Isolo.
