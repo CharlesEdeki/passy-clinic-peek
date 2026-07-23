@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import clinicHero from "@/assets/clinic-hero.jpg";
 import clinicDentist from "@/assets/clinic-dentist.jpg";
 import clinicMap from "@/assets/clinic-map.jpg";
@@ -71,10 +72,12 @@ function Index() {
           <div className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
             <a href="#services" className="hover:text-primary transition-colors">Services</a>
             <a href="#about" className="hover:text-primary transition-colors">Our Practice</a>
+            <a href="#hmo" className="hover:text-primary transition-colors">HMO Partners</a>
+            <a href="#appointment" className="hover:text-primary transition-colors">Book</a>
             <a href="#location" className="hover:text-primary transition-colors">Location</a>
           </div>
           <a
-            href="#location"
+            href="#appointment"
             className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Book Visit
@@ -88,21 +91,21 @@ function Index() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider mb-8">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-red" />
               </span>
               Now Welcoming Patients in Isolo
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-balance leading-[0.9] mb-8">
               Exceptional dental care at{" "}
-              <span className="text-primary">Jakande Gate.</span>
+              <span className="text-brand-red">Jakande Gate.</span>
             </h1>
             <p className="text-xl text-muted-foreground text-pretty max-w-xl mb-10 leading-relaxed">
               Passy Dental Clinic combines modern technology with a gentle touch. Located at Crystall Computer &amp; Shopping Mall, we bring world-class dentistry to the heart of Isolo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="#location"
+                href="#appointment"
                 className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-bold text-lg hover:shadow-xl hover:shadow-primary/20 transition-all text-center"
               >
                 Schedule Appointment
@@ -233,6 +236,55 @@ function Index() {
       </section>
 
       {/* Location */}
+      {/* HMO Partners */}
+      <section id="hmo" className="py-24 bg-card border-y border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-14">
+            <p className="font-[JetBrains_Mono,monospace] text-xs text-brand-red uppercase tracking-widest mb-4">
+              HMO Partners
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight mb-4">
+              Covered by your health plan.
+            </h2>
+            <p className="text-muted-foreground">
+              We work with leading Health Maintenance Organisations to make quality dental care accessible. New partnerships are added regularly — reach out if your HMO isn't listed.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="relative p-8 rounded-3xl border border-border bg-background flex items-center justify-between gap-6">
+              <div>
+                <p className="font-[JetBrains_Mono,monospace] text-[10px] uppercase tracking-widest text-primary/70 mb-2">
+                  Active Partner
+                </p>
+                <h3 className="text-2xl font-bold tracking-tight">Grooming Health HMO</h3>
+                <p className="text-sm text-muted-foreground mt-2">Full dental benefits accepted for enrolees.</p>
+              </div>
+              <span className="shrink-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider">
+                <span className="size-2 rounded-full bg-primary" />
+                Live
+              </span>
+            </div>
+            <div className="relative p-8 rounded-3xl border border-dashed border-border bg-background/60 flex items-center justify-between gap-6">
+              <div>
+                <p className="font-[JetBrains_Mono,monospace] text-[10px] uppercase tracking-widest text-brand-red/80 mb-2">
+                  Coming Soon
+                </p>
+                <h3 className="text-2xl font-bold tracking-tight">Reliance HMO</h3>
+                <p className="text-sm text-muted-foreground mt-2">Partnership in view — coverage rolling out shortly.</p>
+              </div>
+              <span className="shrink-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 text-brand-red text-[11px] font-bold uppercase tracking-wider">
+                <span className="size-2 rounded-full bg-brand-red" />
+                In View
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Appointment */}
+      <AppointmentSection />
+
+      {/* Location */}
       <section id="location" className="py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-card rounded-[40px] border border-border p-8 md:p-16 grid lg:grid-cols-2 gap-16">
@@ -334,5 +386,170 @@ function Index() {
         <span className="font-semibold text-sm hidden sm:inline">Chat on WhatsApp</span>
       </a>
     </div>
+  );
+}
+
+function AppointmentSection() {
+  const services = [
+    "General Dentistry",
+    "Teeth Whitening",
+    "Dental Implants",
+    "Orthodontics / Braces",
+    "Pediatric Care",
+    "Deep Cleaning",
+    "Other",
+  ];
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    service: services[0],
+    date: "",
+    hmo: "",
+    notes: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const lines = [
+      `Hello Passy Dental Clinic, I'd like to book an appointment.`,
+      ``,
+      `Name: ${form.name}`,
+      `Phone: ${form.phone}`,
+      `Service: ${form.service}`,
+      form.date ? `Preferred date: ${form.date}` : null,
+      form.hmo ? `HMO: ${form.hmo}` : null,
+      form.notes ? `Notes: ${form.notes}` : null,
+    ].filter(Boolean);
+    const text = encodeURIComponent(lines.join("\n"));
+    window.open(
+      `https://api.whatsapp.com/send?phone=2347067164269&text=${text}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
+  const inputCls =
+    "w-full px-4 py-3 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition";
+
+  return (
+    <section id="appointment" className="py-24">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="lg:sticky lg:top-24">
+            <p className="font-[JetBrains_Mono,monospace] text-xs text-brand-red uppercase tracking-widest mb-4">
+              Book Appointment
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight mb-6">
+              Reserve your visit in under a minute.
+            </h2>
+            <p className="text-muted-foreground mb-8 max-w-md">
+              Fill in your details and we'll confirm your slot on WhatsApp. Our team responds within business hours (Mon–Sat, 8am–6pm).
+            </p>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <span className="size-1.5 rounded-full bg-primary" />
+                <span>Same-day slots often available</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="size-1.5 rounded-full bg-brand-red" />
+                <span>HMO enrolees welcome</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="size-1.5 rounded-full bg-primary" />
+                <span>Family-friendly & pediatric care</span>
+              </div>
+            </div>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="bg-card border border-border rounded-[32px] p-8 md:p-10 space-y-5 shadow-sm"
+          >
+            <div className="grid sm:grid-cols-2 gap-5">
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">Full Name</span>
+                <input
+                  required
+                  maxLength={80}
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Jane Doe"
+                  className={inputCls}
+                />
+              </label>
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">Phone</span>
+                <input
+                  required
+                  maxLength={20}
+                  type="tel"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  placeholder="+234 ..."
+                  className={inputCls}
+                />
+              </label>
+            </div>
+            <label className="block">
+              <span className="block text-xs font-bold uppercase tracking-widest mb-2">Service</span>
+              <select
+                value={form.service}
+                onChange={(e) => setForm({ ...form, service: e.target.value })}
+                className={inputCls}
+              >
+                {services.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">Preferred Date</span>
+                <input
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
+                  className={inputCls}
+                />
+              </label>
+              <label className="block">
+                <span className="block text-xs font-bold uppercase tracking-widest mb-2">HMO (optional)</span>
+                <input
+                  type="text"
+                  maxLength={60}
+                  value={form.hmo}
+                  onChange={(e) => setForm({ ...form, hmo: e.target.value })}
+                  placeholder="e.g. Grooming Health"
+                  className={inputCls}
+                />
+              </label>
+            </div>
+            <label className="block">
+              <span className="block text-xs font-bold uppercase tracking-widest mb-2">Notes</span>
+              <textarea
+                rows={4}
+                maxLength={500}
+                value={form.notes}
+                onChange={(e) => setForm({ ...form, notes: e.target.value })}
+                placeholder="Anything we should know?"
+                className={inputCls}
+              />
+            </label>
+            <button
+              type="submit"
+              className="w-full px-6 py-4 rounded-2xl bg-primary text-primary-foreground font-bold text-lg hover:shadow-xl hover:shadow-primary/20 transition-all"
+            >
+              Send Appointment Request
+            </button>
+            <p className="text-xs text-muted-foreground text-center">
+              Submitting opens WhatsApp with your details pre-filled to +234 706 716 4269.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
