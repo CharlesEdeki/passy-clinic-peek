@@ -105,7 +105,7 @@ function Index() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="#location"
+                href="#appointment"
                 className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-bold text-lg hover:shadow-xl hover:shadow-primary/20 transition-all text-center"
               >
                 Schedule Appointment
