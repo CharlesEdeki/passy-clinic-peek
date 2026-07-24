@@ -247,6 +247,27 @@ function Index() {
 
       {/* Location */}
       {/* HMO Partners */}
+      {/* Google Reviews */}
+      <section id="reviews" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-14">
+            <p className="font-[JetBrains_Mono,monospace] text-xs text-brand-red uppercase tracking-widest mb-4">
+              Google Reviews
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight mb-4">
+              What our patients are saying.
+            </h2>
+            <p className="text-muted-foreground">
+              Verified reviews from patients on Google.
+            </p>
+          </div>
+          <div
+            className="elfsight-app-7c99a61f-fd1d-4d99-a11a-d41356a77a65"
+            data-elfsight-app-lazy
+          />
+        </div>
+      </section>
+
       <section id="hmo" className="py-24 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-2xl mb-14">
