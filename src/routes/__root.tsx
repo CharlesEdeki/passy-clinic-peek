@@ -106,6 +106,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
+    scripts: [
+      { src: "https://elfsightcdn.com/platform.js", async: true },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
