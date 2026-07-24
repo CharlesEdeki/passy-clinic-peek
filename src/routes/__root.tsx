@@ -106,9 +106,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
-    scripts: [
-      { src: "https://widgets.sociablekit.com/google-reviews/widget.js", defer: true },
-    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

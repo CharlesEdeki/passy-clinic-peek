@@ -221,26 +221,32 @@ function Index() {
         </div>
       </section>
 
-
-      {/* Google Reviews */}
-
-      <section id="reviews" className="py-24">
+      {/* Testimonials */}
+      <section className="py-24 bg-primary text-primary-foreground">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mb-14">
-            <p className="font-[JetBrains_Mono,monospace] text-xs text-brand-red uppercase tracking-widest mb-4">
-              Google Reviews
-            </p>
-            <h2 className="text-4xl font-bold tracking-tight mb-4">
-              What our patients are saying.
-            </h2>
-            <p className="text-muted-foreground">
-              Verified reviews from patients on Google.
-            </p>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <p className="text-3xl font-medium italic leading-tight">
+                "I've always been nervous about dentists, but the team at Passy made me feel so at ease. The clinic is incredibly clean and modern."
+              </p>
+              <p className="font-[JetBrains_Mono,monospace] text-xs uppercase tracking-widest opacity-60">
+                — Emeka O., Isolo
+              </p>
+            </div>
+            <div className="space-y-6">
+              <p className="text-3xl font-medium italic leading-tight">
+                "The best whitening treatment I've had in Lagos. Professional service and zero pain. Highly recommend the team at Jakande Gate."
+              </p>
+              <p className="font-[JetBrains_Mono,monospace] text-xs uppercase tracking-widest opacity-60">
+                — Sarah A., Okota
+              </p>
+            </div>
           </div>
-          <div className="sk-ww-google-reviews" data-embed-id="25699874" />
         </div>
       </section>
 
+      {/* Location */}
+      {/* HMO Partners */}
       <section id="hmo" className="py-24 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-2xl mb-14">
