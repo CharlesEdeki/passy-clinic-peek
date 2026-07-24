@@ -222,9 +222,8 @@ function Index() {
       </section>
 
 
-      {/* Location */}
-      {/* HMO Partners */}
       {/* Google Reviews */}
+
       <section id="reviews" className="py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-2xl mb-14">
