@@ -27,33 +27,43 @@ export const Route = createFileRoute("/")({
 const services = [
   {
     title: "General Dentistry",
-    desc: "Routine exams, fillings, and preventative care to keep your natural teeth healthy for life.",
+    desc: "Comprehensive and routine dental care for patients of all ages.",
     icon: <div className="size-5 border-2 border-primary rounded-sm" />,
   },
   {
-    title: "Teeth Whitening",
-    desc: "Advanced professional whitening systems that deliver visible results in a single visit.",
+    title: "Orthodontics",
+    desc: "Alignment and structural treatments to correct bite issues and straighten teeth.",
+    icon: <div className="w-6 h-3 border-2 border-primary" />,
+  },
+  {
+    title: "Cosmetic Dentistry",
+    desc: "Aesthetic treatments including whitening, veneers, and smile makeovers to enhance your smile.",
     icon: <div className="size-5 border-2 border-primary rounded-full" />,
+  },
+  {
+    title: "Preventive Treatment & Education",
+    desc: "A focus on educating patients and providing preventive care for all ages.",
+    icon: <div className="size-5 border-2 border-dashed border-primary rounded-full" />,
+  },
+  {
+    title: "Pediatric Care",
+    desc: "Specialized dental services offered for children in a friendly, fear-free environment.",
+    icon: <div className="size-4 bg-primary rounded-full" />,
+  },
+  {
+    title: "Emergency Services",
+    desc: "Urgent dental care when immediate attention is needed for pain, trauma, or sudden issues.",
+    icon: <div className="size-5 border-2 border-primary rotate-45" />,
+  },
+  {
+    title: "Sedation Dentistry",
+    desc: "An option to help ensure patient comfort and ease anxiety during procedures.",
+    icon: <div className="size-5 border-2 border-primary rounded-lg" />,
   },
   {
     title: "Dental Implants",
     desc: "Modern restorative solutions for missing teeth that look, feel, and function like the real thing.",
-    icon: <div className="size-5 border-2 border-primary rotate-45" />,
-  },
-  {
-    title: "Orthodontics",
-    desc: "Precision alignment services for children and adults using the latest orthodontic techniques.",
-    icon: <div className="w-6 h-3 border-2 border-primary" />,
-  },
-  {
-    title: "Pediatric Care",
-    desc: "A friendly, fear-free environment specialised for our youngest patients in Isolo.",
-    icon: <div className="size-4 bg-primary rounded-full" />,
-  },
-  {
-    title: "Deep Cleaning",
-    desc: "Professional hygiene sessions that remove plaque and tartar build-up to prevent gum disease.",
-    icon: <div className="size-5 border-2 border-dashed border-primary rounded-full" />,
+    icon: <div className="size-5 border-2 border-primary rounded-t-full" />,
   },
 ];
 
