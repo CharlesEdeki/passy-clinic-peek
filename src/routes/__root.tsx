@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
-      { src: "https://elfsightcdn.com/platform.js", async: true },
+      { src: "https://widgets.sociablekit.com/google-reviews/widget.js", defer: true },
     ],
   }),
   shellComponent: RootShell,

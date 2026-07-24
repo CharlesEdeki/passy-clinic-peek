@@ -237,10 +237,7 @@ function Index() {
               Verified reviews from patients on Google.
             </p>
           </div>
-          <div
-            className="elfsight-app-7c99a61f-fd1d-4d99-a11a-d41356a77a65"
-            data-elfsight-app-lazy
-          />
+          <div className="sk-ww-google-reviews" data-embed-id="25699874" />
         </div>
       </section>
 
