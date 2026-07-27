@@ -293,3 +293,22 @@
 .gr-widget .sk_branding {
   opacity: 0.6;
 }
+
+/* Slides are just spacing wrappers; the post itself is the card */
+.gr-widget .sk-slide-item {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.gr-widget .sk-post,
+.gr-widget .sk-badge {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 1.25rem !important;
+  box-shadow: none !important;
+}
+
+.gr-widget .sk-post__footer {
+  border-color: var(--border) !important;
+}
