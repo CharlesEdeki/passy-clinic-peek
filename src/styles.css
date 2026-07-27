@@ -186,17 +186,12 @@
 
 /* Review cards */
 .gr-widget [class*="card"],
-.gr-widget [class*="item"],
-.gr-widget [class*="review"] {
+.gr-widget [class*="item"] {
   background-color: var(--card) !important;
   color: var(--foreground) !important;
-  border-radius: 1.5rem !important;
-  border-color: var(--border) !important;
-  box-shadow: none !important;
-}
-
-.gr-widget [class*="card"] {
+  border-radius: 1.25rem !important;
   border: 1px solid var(--border) !important;
+  box-shadow: none !important;
 }
 
 /* Headings / names */
