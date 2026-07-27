@@ -267,3 +267,29 @@
   max-width: 100% !important;
   border: 0 !important;
 }
+
+/* Widget-specific frames: strip so only our themed card frames the reviews */
+.gr-widget .sk-google-reviews,
+.gr-widget .sk-posts-container,
+.gr-widget .sk-carousel,
+.gr-widget .sk-slider {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.gr-widget .sk-slider__btn {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--primary) !important;
+}
+
+.gr-widget .sk-slider__btn:hover {
+  border-color: var(--brand-red) !important;
+  color: var(--brand-red) !important;
+}
+
+.gr-widget .sk_branding {
+  opacity: 0.6;
+}
