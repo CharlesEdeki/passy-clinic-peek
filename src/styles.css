@@ -157,3 +157,95 @@
     color: var(--color-foreground);
   }
 }
+
+/*
+ * SociableKit Google Reviews widget theming.
+ * The widget injects its own markup/classes, so these rules are intentionally
+ * broad but scoped to the .gr-widget wrapper only.
+ */
+.gr-widget {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.gr-widget * {
+  font-family: "Inter", sans-serif !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.gr-widget a {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+}
+
+.gr-widget a:hover {
+  color: var(--brand-red) !important;
+}
+
+/* Review cards */
+.gr-widget [class*="card"],
+.gr-widget [class*="item"],
+.gr-widget [class*="review"] {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border-radius: 1.5rem !important;
+  border-color: var(--border) !important;
+  box-shadow: none !important;
+}
+
+.gr-widget [class*="card"] {
+  border: 1px solid var(--border) !important;
+}
+
+/* Headings / names */
+.gr-widget [class*="name"],
+.gr-widget [class*="title"],
+.gr-widget h1,
+.gr-widget h2,
+.gr-widget h3,
+.gr-widget h4 {
+  color: var(--foreground) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Body / meta text */
+.gr-widget p,
+.gr-widget span,
+.gr-widget [class*="text"],
+.gr-widget [class*="date"],
+.gr-widget [class*="time"] {
+  color: var(--muted-foreground) !important;
+  line-height: 1.6;
+}
+
+/* Stars keep the brand red rather than default Google gold */
+.gr-widget [class*="star"] svg,
+.gr-widget [class*="star"] i,
+.gr-widget [class*="rating"] svg {
+  color: var(--brand-red) !important;
+  fill: var(--brand-red) !important;
+}
+
+/* Buttons inside the widget */
+.gr-widget button,
+.gr-widget [class*="btn"] {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 0.5rem 1.25rem !important;
+  font-weight: 600 !important;
+}
+
+.gr-widget img {
+  border-radius: 9999px !important;
+}
+
+.gr-widget iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: 0 !important;
+}
