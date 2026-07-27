@@ -77,22 +77,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Passy Dental Clinic — Isolo, Lagos" },
+      { title: "Passy Dental Clinic — Modern Dentistry in Isolo, Lagos" },
       {
         name: "description",
         content:
-          "Modern dental care at Jakande Gate, Isolo. General dentistry, whitening, implants, orthodontics and pediatric care.",
+          "Passy Dental Clinic at Jakande Gate, Isolo offers general dentistry, whitening, implants, orthodontics and pediatric care in a calm, modern setting.",
       },
       { name: "author", content: "Passy Dental Clinic" },
-      { property: "og:title", content: "Passy Dental Clinic — Isolo, Lagos" },
+      { property: "og:title", content: "Passy Dental Clinic — Modern Dentistry in Isolo, Lagos" },
       {
         property: "og:description",
         content:
-          "Modern dental care at Jakande Gate, Isolo. General dentistry, whitening, implants, orthodontics and pediatric care.",
+          "Passy Dental Clinic at Jakande Gate, Isolo offers general dentistry, whitening, implants, orthodontics and pediatric care in a calm, modern setting.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Passy Dental Clinic — Modern Dentistry in Isolo, Lagos" },
+      { name: "twitter:description", content: "Passy Dental Clinic at Jakande Gate, Isolo offers general dentistry, whitening, implants, orthodontics and pediatric care in a calm, modern setting." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/neBCJCRC6AUoHp7TFpIi150gBRc2/social-images/social-1785155960187-EDrop_1745888137547.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/neBCJCRC6AUoHp7TFpIi150gBRc2/social-images/social-1785155960187-EDrop_1745888137547.webp" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
