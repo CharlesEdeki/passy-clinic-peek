@@ -3,6 +3,7 @@ import { useState } from "react";
 import clinicHero from "@/assets/clinic-hero.jpg";
 import clinicDentist from "@/assets/clinic-dentist.jpg";
 import clinicMap from "@/assets/clinic-map.jpg";
+import { GoogleReviews } from "@/components/GoogleReviews";
 
 export const Route = createFileRoute("/")({
   head: () => ({
