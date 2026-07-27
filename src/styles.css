@@ -157,3 +157,158 @@
     color: var(--color-foreground);
   }
 }
+
+/*
+ * SociableKit Google Reviews widget theming.
+ * The widget injects its own markup/classes, so these rules are intentionally
+ * broad but scoped to the .gr-widget wrapper only.
+ */
+.gr-widget {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.gr-widget * {
+  font-family: "Inter", sans-serif !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.gr-widget a {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+}
+
+.gr-widget a:hover {
+  color: var(--brand-red) !important;
+}
+
+/* Review cards */
+.gr-widget [class*="card"],
+.gr-widget [class*="item"] {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border-radius: 1.25rem !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+
+/* Headings / names */
+.gr-widget [class*="name"],
+.gr-widget [class*="title"],
+.gr-widget h1,
+.gr-widget h2,
+.gr-widget h3,
+.gr-widget h4 {
+  color: var(--foreground) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Body / meta text */
+.gr-widget p,
+.gr-widget span,
+.gr-widget [class*="text"],
+.gr-widget [class*="date"],
+.gr-widget [class*="time"] {
+  color: var(--muted-foreground) !important;
+  line-height: 1.6;
+}
+
+/* Stars keep the brand red rather than default Google gold */
+.gr-widget [class*="star"] svg,
+.gr-widget [class*="star"] i,
+.gr-widget [class*="rating"] svg {
+  color: var(--brand-red) !important;
+  fill: var(--brand-red) !important;
+}
+
+/* Buttons / links inside the widget stay light so widget icons remain legible */
+.gr-widget button,
+.gr-widget [class*="btn"] {
+  background-color: transparent !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+}
+
+.gr-widget button:hover,
+.gr-widget [class*="btn"]:hover {
+  border-color: var(--brand-red) !important;
+  color: var(--brand-red) !important;
+}
+
+/* Only round avatar-style images, leave review photos rectangular */
+.gr-widget [class*="avatar"] img,
+.gr-widget [class*="profile"] img,
+.gr-widget [class*="author"] img {
+  border-radius: 9999px !important;
+}
+
+.gr-widget [class*="photo"] img,
+.gr-widget [class*="image"] img,
+.gr-widget [class*="media"] img {
+  border-radius: 0.75rem !important;
+}
+
+/* The widget's own outer wrapper shouldn't add a second card frame */
+.gr-widget > div,
+.gr-widget [class*="container"],
+.gr-widget [class*="wrapper"] {
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.gr-widget iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: 0 !important;
+}
+
+/* Widget-specific frames: strip so only our themed card frames the reviews */
+.gr-widget .sk-google-reviews,
+.gr-widget .sk-posts-container,
+.gr-widget .sk-carousel,
+.gr-widget .sk-slider {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.gr-widget .sk-slider__btn {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--primary) !important;
+}
+
+.gr-widget .sk-slider__btn:hover {
+  border-color: var(--brand-red) !important;
+  color: var(--brand-red) !important;
+}
+
+.gr-widget .sk_branding {
+  opacity: 0.6;
+}
+
+/* Slides are just spacing wrappers; the post itself is the card */
+.gr-widget .sk-slide-item {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.gr-widget .sk-post,
+.gr-widget .sk-badge {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 1.25rem !important;
+  box-shadow: none !important;
+}
+
+.gr-widget .sk-post__footer {
+  border-color: var(--border) !important;
+}
