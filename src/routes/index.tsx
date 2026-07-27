@@ -75,21 +75,22 @@ function Index() {
       <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="size-8 bg-primary rounded-lg flex items-center justify-center">
-              <div className="size-3 bg-background rounded-full" />
+            <div className="size-8 bg-primary rounded-lg flex items-center justify-center ring-2 ring-brand-red/30">
+              <div className="size-3 bg-brand-red rounded-full" />
             </div>
             <span className="font-bold tracking-tight text-lg">Passy Dental</span>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
             <a href="#services" className="hover:text-primary transition-colors">Services</a>
             <a href="#about" className="hover:text-primary transition-colors">Our Practice</a>
+            <a href="#reviews" className="hover:text-primary transition-colors">Reviews</a>
             <a href="#hmo" className="hover:text-primary transition-colors">HMO Partners</a>
             <a href="#appointment" className="hover:text-primary transition-colors">Book</a>
             <a href="#location" className="hover:text-primary transition-colors">Location</a>
           </div>
           <a
             href="#appointment"
-            className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-semibold hover:bg-brand-red transition-colors"
           >
             Book Visit
           </a>
@@ -123,7 +124,7 @@ function Index() {
               </a>
               <a
                 href="#services"
-                className="px-8 py-4 bg-card border border-border rounded-2xl font-bold text-lg hover:bg-secondary transition-colors text-center"
+                className="px-8 py-4 bg-card border border-border rounded-2xl font-bold text-lg hover:border-brand-red hover:text-brand-red transition-colors text-center"
               >
                 View Services
               </a>
@@ -160,8 +161,8 @@ function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-3xl overflow-hidden">
             {services.map((s) => (
-              <div key={s.title} className="bg-card p-10 hover:bg-secondary transition-colors">
-                <div className="size-12 bg-primary/5 rounded-xl border border-primary/10 flex items-center justify-center mb-6">
+              <div key={s.title} className="group bg-card p-8 md:p-10 hover:bg-secondary transition-colors">
+                <div className="size-12 bg-primary/5 rounded-xl border border-primary/10 group-hover:border-brand-red/40 group-hover:bg-brand-red/5 flex items-center justify-center mb-6 transition-colors">
                   {s.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{s.title}</h3>
@@ -338,11 +339,11 @@ function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border">
+      <footer className="py-12 border-t-2 border-brand-red/40">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
-            <div className="size-6 bg-primary/20 rounded-md flex items-center justify-center">
-              <div className="size-2 bg-primary rounded-full" />
+            <div className="size-6 bg-primary/15 rounded-md flex items-center justify-center">
+              <div className="size-2 bg-brand-red rounded-full" />
             </div>
             <span className="font-bold tracking-tight">Passy Dental Clinic</span>
           </div>
