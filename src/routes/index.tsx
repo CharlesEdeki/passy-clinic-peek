@@ -3,6 +3,7 @@ import { useState } from "react";
 import clinicHero from "@/assets/clinic-hero.jpg";
 import clinicDentist from "@/assets/clinic-dentist.jpg";
 import clinicMap from "@/assets/clinic-map.jpg";
+import { GoogleReviews } from "@/components/GoogleReviews";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -221,29 +222,8 @@ function Index() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <p className="text-3xl font-medium italic leading-tight">
-                "I've always been nervous about dentists, but the team at Passy made me feel so at ease. The clinic is incredibly clean and modern."
-              </p>
-              <p className="font-[JetBrains_Mono,monospace] text-xs uppercase tracking-widest opacity-60">
-                — Emeka O., Isolo
-              </p>
-            </div>
-            <div className="space-y-6">
-              <p className="text-3xl font-medium italic leading-tight">
-                "The best whitening treatment I've had in Lagos. Professional service and zero pain. Highly recommend the team at Jakande Gate."
-              </p>
-              <p className="font-[JetBrains_Mono,monospace] text-xs uppercase tracking-widest opacity-60">
-                — Sarah A., Okota
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Google Reviews */}
+      <GoogleReviews />
 
       {/* Location */}
       {/* HMO Partners */}
