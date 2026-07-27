@@ -229,19 +229,42 @@
   fill: var(--brand-red) !important;
 }
 
-/* Buttons inside the widget */
+/* Buttons / links inside the widget stay light so widget icons remain legible */
 .gr-widget button,
 .gr-widget [class*="btn"] {
-  background-color: var(--primary) !important;
-  color: var(--primary-foreground) !important;
-  border: none !important;
+  background-color: transparent !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 9999px !important;
-  padding: 0.5rem 1.25rem !important;
   font-weight: 600 !important;
 }
 
-.gr-widget img {
+.gr-widget button:hover,
+.gr-widget [class*="btn"]:hover {
+  border-color: var(--brand-red) !important;
+  color: var(--brand-red) !important;
+}
+
+/* Only round avatar-style images, leave review photos rectangular */
+.gr-widget [class*="avatar"] img,
+.gr-widget [class*="profile"] img,
+.gr-widget [class*="author"] img {
   border-radius: 9999px !important;
+}
+
+.gr-widget [class*="photo"] img,
+.gr-widget [class*="image"] img,
+.gr-widget [class*="media"] img {
+  border-radius: 0.75rem !important;
+}
+
+/* The widget's own outer wrapper shouldn't add a second card frame */
+.gr-widget > div,
+.gr-widget [class*="container"],
+.gr-widget [class*="wrapper"] {
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 .gr-widget iframe {
