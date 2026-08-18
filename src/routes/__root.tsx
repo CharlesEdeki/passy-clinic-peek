@@ -7,10 +7,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -37,9 +36,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -114,7 +110,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "icon",
-        href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231F5E4E'/%3E%3Cpath d='M16 7c-3 0-4-1.5-6.5-1.5S6 8 6 11c0 4 1.5 6 2.5 9s1 5 2.5 5 1.5-4 2-6 1.5-2.5 3-2.5 2.5.5 3 2.5 0 6 2 6 1.5-2 2.5-5S26 15 26 11c0-3-1-5.5-3.5-5.5S19 7 16 7z' fill='%23fff'/%3E%3Ccircle cx='22' cy='12' r='2.5' fill='%23e5544b'/%3E%3C/svg%3E",
+        type: "image/png",
+        // Cropped from the clinic's own logo -- the full file includes the
+        // wordmark, which is illegible at browser-tab size (16-32px); this
+        // keeps just the icon mark, which still reads at that size.
+        href: "/images/favicon.png",
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
