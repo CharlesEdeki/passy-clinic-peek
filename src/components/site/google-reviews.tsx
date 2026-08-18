@@ -1,96 +1,47 @@
-import { getRouteApi } from "@tanstack/react-router";
-import { Star } from "lucide-react";
+import { useEffect } from "react";
 
 import { Eyebrow, Reveal } from "@/components/site/primitives";
-import type { GoogleReview } from "@/lib/api/reviews.functions";
 import { MAPS_URL, WRITE_REVIEW_URL } from "@/lib/clinic";
-import { cn } from "@/lib/utils";
 
-const route = getRouteApi("/");
+/**
+ * EmbedSocial's Google Reviews carousel. From the dashboard: Sources >
+ * Google Business Profile, layout set to auto-advancing carousel (3 cards
+ * desktop / 2 tablet / 1 mobile), styled via their AI editor to match this
+ * site's palette. To swap widgets, replace WIDGET_REF with the new one from
+ * EmbedSocial's Embed tab -- everything else on this page stays the same.
+ */
+const WIDGET_REF = "079bbf206e37554d77400ce5678df7c2cdf601ef";
 
-function Stars({ rating }: { rating: number }) {
-  return (
-    <div
-      className="mb-2.5 flex gap-0.5 text-gold"
-      role="img"
-      aria-label={`Rated ${rating} out of 5`}
-    >
-      {Array.from({ length: 5 }, (_, index) => (
-        <Star
-          key={index}
-          aria-hidden="true"
-          className={cn("size-4", index < rating ? "fill-current" : "text-border")}
-        />
-      ))}
-    </div>
-  );
-}
+/**
+ * EmbedSocial ships a plain <script src="..."> tag, which JSX won't execute
+ * the way raw HTML does -- React only runs scripts inserted imperatively
+ * into the DOM. This mirrors their own snippet's logic exactly: check
+ * document.getElementById(SCRIPT_ID) first, so the script is fetched once
+ * regardless of how many times this effect fires (React 18/19 strict mode
+ * double-invokes effects in development).
+ *
+ * Living inside useEffect also means this never runs during the site's
+ * static pre-render -- effects are client-only by design -- which matters
+ * here specifically, since the widget touches `document` and would throw
+ * during a Node-based build otherwise.
+ */
+const SCRIPT_ID = "EmbedSocialHashtagScript";
 
-function ReviewCard({ review }: { review: GoogleReview }) {
-  const { reviewer, starRating, comment, relativeTime, reviewUrl } = review;
+function useEmbedSocialScript() {
+  useEffect(() => {
+    if (typeof document === "undefined" || document.getElementById(SCRIPT_ID)) {
+      return;
+    }
 
-  return (
-    <figure className="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
-      <Stars rating={starRating} />
-      <blockquote className="text-[0.94rem]">&ldquo;{comment}&rdquo;</blockquote>
-
-      {/* Google requires the author to be credited and linked. */}
-      <figcaption className="mt-auto flex items-center gap-[11px] pt-4">
-        {reviewer.profilePhotoUrl ? (
-          <img
-            src={reviewer.profilePhotoUrl}
-            alt=""
-            width={36}
-            height={36}
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            className="size-9 shrink-0 rounded-full object-cover"
-          />
-        ) : (
-          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-mint text-[0.82rem] font-bold text-theatre">
-            {reviewer.displayName.charAt(0)}
-          </span>
-        )}
-        <span>
-          <span className="block text-[0.88rem] font-bold">
-            {reviewer.profileUrl ? (
-              <a
-                href={reviewer.profileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline-offset-4 hover:underline"
-              >
-                {reviewer.displayName}
-              </a>
-            ) : (
-              reviewer.displayName
-            )}
-          </span>
-          <span className="block text-[0.76rem] text-muted-foreground">
-            {reviewUrl ? (
-              <a
-                href={reviewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline-offset-4 hover:underline"
-              >
-                {relativeTime} on Google
-              </a>
-            ) : (
-              relativeTime
-            )}
-          </span>
-        </span>
-      </figcaption>
-    </figure>
-  );
+    const script = document.createElement("script");
+    script.id = SCRIPT_ID;
+    script.src = "https://embedsocial.com/cdn/ht.js";
+    document.head.appendChild(script);
+  }, []);
 }
 
 export function GoogleReviews() {
-  const data = route.useLoaderData();
-
-  const reviews = data.reviews;
-  const mapsUrl = data.mapsUrl ?? MAPS_URL;
+  useEmbedSocialScript();
 
   return (
     <section id="reviews" className="border-y border-border bg-background py-19 md:py-26">
@@ -99,63 +50,44 @@ export function GoogleReviews() {
           <div className="max-w-2xl">
             <Eyebrow>Patient reviews</Eyebrow>
             <h2 className="text-[clamp(2rem,4vw,3.1rem)]">What our patients say on Google.</h2>
-            <p className="mt-5 max-w-[56ch] text-[1.05rem] text-muted-foreground">
+            {/* <p className="mt-5 max-w-[56ch] text-[1.05rem] text-muted-foreground">
               Real, verified reviews from people we&rsquo;ve cared for at Jakande Gate, Isolo.
-              {data.averageRating && data.totalReviewCount ? (
-                <>
-                  {" "}
-                  We&rsquo;re rated{" "}
-                  <strong className="font-semibold text-foreground">
-                    {data.averageRating.toFixed(1)} out of 5
-                  </strong>{" "}
-                  across {data.totalReviewCount} reviews.
-                </>
-              ) : null}
-            </p>
+            </p> */}
           </div>
         </Reveal>
 
         <Reveal delay={1}>
-          <div className="relative mt-11 overflow-hidden rounded-[28px] border border-border bg-card p-4 sm:p-6 md:rounded-[36px] md:p-8">
-            <span
-              aria-hidden="true"
-              className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-theatre via-theatre to-coral"
-            />
-
-            {reviews.length === 0 ? (
-              /* Google was unreachable, or no one has written anything yet.
-                 Either way, send people to the listing rather than show a
-                 broken-looking box. */
-              <p className="px-2 py-8 text-center text-[0.95rem] text-muted-foreground">
-                Our reviews live on Google.{" "}
-                <a
-                  href={mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-theatre underline underline-offset-4"
-                >
-                  Read them there
-                </a>
-                .
-              </p>
-            ) : (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {reviews.map((review, index) => (
-                  <ReviewCard key={review.reviewId ?? index} review={review} />
-                ))}
-              </div>
-            )}
+          {/* EmbedSocial finds this div by data-ref once ht.js loads and
+              replaces its contents with the carousel. Nothing else should
+              be rendered inside it. */}
+          <div
+            className="embedsocial-hashtag mt-11"
+            data-ref={WIDGET_REF}
+            data-dynamicload="yes"
+            data-lazyload="yes"
+          >
+            <a
+              className="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding"
+              href="https://embedsocial.com/google-reviews-widget/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Embed Google reviews"
+            >
+              <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial" />
+              <div className="es-widget-branding-text">Embed Google reviews</div>
+            </a>
           </div>
         </Reveal>
 
-        {/* Google requires a route back to the source. */}
-        <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
+        {/* Google requires a route back to the source, independent of
+            whichever widget is currently rendering the reviews themselves. */}
+        <div className="mt-9 flex flex-wrap items-center justify-between gap-4">
           <p className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted-foreground">
             Reviews sourced live from Google
           </p>
           <div className="flex flex-wrap gap-3.5">
             <a
-              href={mapsUrl}
+              href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-full border-[1.5px] border-border bg-card px-[26px] py-3 text-[0.95rem] font-semibold transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-theatre"

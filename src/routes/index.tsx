@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { fetchGoogleReviews } from "@/lib/api/reviews.functions";
 import { GEO } from "@/lib/clinic";
 
 import { Booking } from "@/components/site/booking";
@@ -65,9 +64,6 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESCRIPTION },
     ],
   }),
-  // Loading here rather than in a hook puts the reviews in the SSR'd HTML,
-  // so search engines index them and there is no pop-in on first paint.
-  loader: () => fetchGoogleReviews(),
   component: Index,
 });
 

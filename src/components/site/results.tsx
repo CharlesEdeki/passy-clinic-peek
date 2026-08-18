@@ -57,7 +57,16 @@ function CaseSlider({ study }: { study: CaseStudy }) {
         ref={frameRef}
         className="relative aspect-[4/3] select-none overflow-hidden bg-mint [touch-action:pan-y]"
       >
-        {state === "missing" ? (
+        {state === "loading" && (
+          /* This is what ships in the pre-rendered HTML by default -- the
+             existence-check below only runs client-side, and a static build
+             never runs it at all for crawlers or no-JS visitors. It must
+             never reference the image files directly, or a missing pair
+             ships as a permanently broken <img> in the page's real markup. */
+          <div className="size-full animate-pulse bg-border/40" aria-hidden="true" />
+        )}
+
+        {state === "missing" && (
           <div className="grid h-full place-items-center border-[1.5px] border-dashed border-border bg-white p-[26px] text-center">
             <span className="font-mono text-[0.66rem] uppercase leading-[2] tracking-[0.13em] text-muted-foreground">
               <span className="mb-2 block font-sans text-[0.98rem] normal-case tracking-normal text-foreground">
@@ -68,7 +77,9 @@ function CaseSlider({ study }: { study: CaseStudy }) {
               and <code className="rounded bg-mint px-1.5 py-0.5 text-theatre-deep">{`images/${study.id}-after.jpg`}</code>
             </span>
           </div>
-        ) : (
+        )}
+
+        {state === "ready" && (
           <>
             <img
               src={afterSrc}
