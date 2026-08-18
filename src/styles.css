@@ -5,13 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
+ * Passy Dental Clinic — design system.
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
+ * Palette is "clinic theatre": deep forest green on warm paper, mint for
+ * calm surfaces, coral for anything that needs a pulse. Brand values are
+ * kept as exact hex so they match the approved design 1:1; shadcn's
+ * semantic tokens are mapped on top of them so every ui/ component
+ * inherits the same palette for free.
  *
  * To add a new semantic color:
  * 1. Add the variable to :root (light value) and .dark (dark value)
@@ -19,13 +19,13 @@
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 6px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 14px);
+  --radius-3xl: calc(var(--radius) + 22px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -46,11 +46,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -59,92 +54,124 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Brand */
+  --color-ink: var(--ink);
+  --color-theatre: var(--theatre);
+  --color-theatre-deep: var(--theatre-deep);
+  --color-mint: var(--mint);
+  --color-paper: var(--paper);
+  --color-coral: var(--coral);
+  --color-rule: var(--rule);
   --color-whatsapp: var(--whatsapp);
-  --color-whatsapp-foreground: var(--whatsapp-foreground);
-  --color-brand-red: var(--brand-red);
-  --color-brand-red-foreground: var(--brand-red-foreground);
-  --font-display: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --color-gold: var(--gold);
+  --color-live: var(--live);
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Karla", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --ease-brand: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --color-theatre-soft: var(--theatre-soft);
+
+  --animate-accordion-down: accordion-down 0.35s var(--ease-brand);
+  --animate-accordion-up: accordion-up 0.35s var(--ease-brand);
+  --animate-pulse-ring: pulse-ring 2.2s infinite;
 }
 
 :root {
-  --radius: 0.625rem;
-  /* Passy Dental Clinic — Clinical Editorial palette: navy blue on warm cream */
-  --background: hsl(40 20% 98%);
-  --foreground: hsl(210 30% 12%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(210 30% 12%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(210 30% 12%);
-  --primary: oklch(0.32 0.07 258);
-  --primary-foreground: hsl(40 20% 98%);
-  --secondary: hsl(40 15% 95%);
-  --secondary-foreground: hsl(210 30% 12%);
-  --muted: hsl(40 15% 95%);
-  --muted-foreground: hsl(210 10% 45%);
-  --accent: oklch(0.32 0.07 258 / 0.08);
-  --accent-foreground: oklch(0.32 0.07 258);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: hsl(210 30% 12% / 0.08);
-  --input: hsl(210 30% 12% / 0.08);
-  --ring: oklch(0.32 0.07 258);
-  --whatsapp: oklch(0.65 0.22 142);
-  --whatsapp-foreground: hsl(0 0% 100%);
-  --brand-red: oklch(0.58 0.22 25);
-  --brand-red-foreground: hsl(0 0% 100%);
-  --chart-1: oklch(0.32 0.07 258);
-  --chart-2: oklch(0.45 0.08 258);
-  --chart-3: oklch(0.55 0.09 258);
-  --chart-4: oklch(0.65 0.08 258);
-  --chart-5: oklch(0.75 0.07 258);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.32 0.07 258);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.32 0.07 258);
+  --radius: 1.125rem;
+
+  /* Height of the fixed header. Everything that has to clear it reads this. */
+  --header-h: 7rem;
+
+  --ink: #0e211c;
+  --theatre: oklch(0.32 0.07 258);
+  --theatre-deep: oklch(0.2 0.04 258);
+  /* Light tint of the brand navy, for eyebrows and captions on dark bands. */
+  --theatre-soft: oklch(0.74 0.08 258);
+  --mint: #e8f1f5;
+  --paper: #f6f7f4;
+  --coral: #e5544b;
+  --rule: #d6ded9;
+  --whatsapp: #25d366;
+  --gold: #e8a33d;
+  --live: #22a06b;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--theatre);
+  --primary-foreground: #ffffff;
+  --secondary: var(--mint);
+  --secondary-foreground: var(--theatre-deep);
+  --muted: #eef1ee;
+  --muted-foreground: #5e6f69;
+  --accent: var(--mint);
+  --accent-foreground: var(--theatre-deep);
+  --destructive: var(--coral);
+  --destructive-foreground: #ffffff;
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--theatre);
+
+  /* Buttons glow in the brand colour; changing --theatre updates them all. */
+  --shadow-cta: 0 6px 20px -8px oklch(0.32 0.07 258 / 0.7);
+
+  --chart-1: var(--theatre);
+  --chart-2: #3d5a7a;
+  --chart-3: #5a7fa8;
+  --chart-4: #7da3c8;
+  --chart-5: var(--coral);
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--theatre);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--mint);
+  --sidebar-accent-foreground: var(--theatre-deep);
+  --sidebar-border: var(--rule);
+  --sidebar-ring: var(--theatre);
 }
 
 .dark {
-  --background: oklch(0.18 0.04 260);
-  --foreground: oklch(0.98 0.01 80);
-  --card: oklch(0.22 0.05 260);
-  --card-foreground: oklch(0.98 0.01 80);
-  --popover: oklch(0.22 0.05 260);
-  --popover-foreground: oklch(0.98 0.01 80);
-  --primary: oklch(0.85 0.05 250);
-  --primary-foreground: oklch(0.18 0.04 260);
-  --secondary: oklch(0.28 0.04 260);
-  --secondary-foreground: oklch(0.98 0.01 80);
-  --muted: oklch(0.28 0.04 260);
-  --muted-foreground: oklch(0.7 0.03 250);
-  --accent: oklch(0.85 0.05 250 / 0.15);
-  --accent-foreground: oklch(0.98 0.01 80);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.85 0.05 250);
-  --whatsapp: oklch(0.65 0.22 142);
-  --whatsapp-foreground: hsl(0 0% 100%);
-  --chart-1: oklch(0.85 0.05 250);
-  --chart-2: oklch(0.72 0.06 250);
-  --chart-3: oklch(0.62 0.07 250);
-  --chart-4: oklch(0.52 0.07 250);
-  --chart-5: oklch(0.42 0.06 250);
-  --brand-red: oklch(0.65 0.22 25);
-  --brand-red-foreground: hsl(0 0% 100%);
-  --sidebar: oklch(0.22 0.05 260);
-  --sidebar-foreground: oklch(0.98 0.01 80);
-  --sidebar-primary: oklch(0.85 0.05 250);
-  --sidebar-primary-foreground: oklch(0.18 0.04 260);
-  --sidebar-accent: oklch(0.28 0.04 260);
-  --sidebar-accent-foreground: oklch(0.98 0.01 80);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.85 0.05 250);
+  --background: var(--ink);
+  --foreground: #f2f6f4;
+  --card: var(--theatre-deep);
+  --card-foreground: #f2f6f4;
+  --popover: var(--theatre-deep);
+  --popover-foreground: #f2f6f4;
+  --primary: oklch(0.64 0.12 258);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.32 0.07 258);
+  --secondary-foreground: #f2f6f4;
+  --muted: oklch(0.32 0.07 258);
+  --muted-foreground: oklch(0.72 0.03 258);
+  --accent: oklch(0.32 0.07 258);
+  --accent-foreground: #f2f6f4;
+  --destructive: #f0736b;
+  --destructive-foreground: var(--ink);
+  --border: rgb(255 255 255 / 12%);
+  --input: rgb(255 255 255 / 16%);
+  --ring: oklch(0.64 0.12 258);
+
+  --sidebar: var(--theatre-deep);
+  --sidebar-foreground: #f2f6f4;
+  --sidebar-primary: oklch(0.64 0.12 258);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: oklch(0.32 0.07 258);
+  --sidebar-accent-foreground: #f2f6f4;
+  --sidebar-border: rgb(255 255 255 / 12%);
+  --sidebar-ring: oklch(0.64 0.12 258);
 }
 
 @layer base {
@@ -152,163 +179,96 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 0.5rem);
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--coral);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  body.is-locked {
+    overflow: hidden;
   }
 }
 
-/*
- * SociableKit Google Reviews widget theming.
- * The widget injects its own markup/classes, so these rules are intentionally
- * broad but scoped to the .gr-widget wrapper only.
- */
-.gr-widget {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
 }
 
-.gr-widget * {
-  font-family: "Inter", sans-serif !important;
-  max-width: 100%;
-  box-sizing: border-box;
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 
-.gr-widget a {
-  color: var(--primary) !important;
-  text-decoration: none !important;
+@keyframes pulse-ring {
+  70% {
+    box-shadow: 0 0 0 9px rgb(34 160 107 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(34 160 107 / 0);
+  }
 }
 
-.gr-widget a:hover {
-  color: var(--brand-red) !important;
+/* Scroll reveal — opt out entirely when the OS asks for less motion. */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s var(--ease-brand),
+    transform 0.7s var(--ease-brand);
 }
 
-/* Review cards */
-.gr-widget [class*="card"],
-.gr-widget [class*="item"] {
-  background-color: var(--card) !important;
-  color: var(--foreground) !important;
-  border-radius: 1.25rem !important;
-  border: 1px solid var(--border) !important;
-  box-shadow: none !important;
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
 }
 
-/* Headings / names */
-.gr-widget [class*="name"],
-.gr-widget [class*="title"],
-.gr-widget h1,
-.gr-widget h2,
-.gr-widget h3,
-.gr-widget h4 {
-  color: var(--foreground) !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.01em;
-}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 
-/* Body / meta text */
-.gr-widget p,
-.gr-widget span,
-.gr-widget [class*="text"],
-.gr-widget [class*="date"],
-.gr-widget [class*="time"] {
-  color: var(--muted-foreground) !important;
-  line-height: 1.6;
-}
+  html {
+    scroll-behavior: auto;
+  }
 
-/* Stars keep the brand red rather than default Google gold */
-.gr-widget [class*="star"] svg,
-.gr-widget [class*="star"] i,
-.gr-widget [class*="rating"] svg {
-  color: var(--brand-red) !important;
-  fill: var(--brand-red) !important;
-}
-
-/* Buttons / links inside the widget stay light so widget icons remain legible */
-.gr-widget button,
-.gr-widget [class*="btn"] {
-  background-color: transparent !important;
-  color: var(--primary) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 9999px !important;
-  font-weight: 600 !important;
-}
-
-.gr-widget button:hover,
-.gr-widget [class*="btn"]:hover {
-  border-color: var(--brand-red) !important;
-  color: var(--brand-red) !important;
-}
-
-/* Only round avatar-style images, leave review photos rectangular */
-.gr-widget [class*="avatar"] img,
-.gr-widget [class*="profile"] img,
-.gr-widget [class*="author"] img {
-  border-radius: 9999px !important;
-}
-
-.gr-widget [class*="photo"] img,
-.gr-widget [class*="image"] img,
-.gr-widget [class*="media"] img {
-  border-radius: 0.75rem !important;
-}
-
-/* The widget's own outer wrapper shouldn't add a second card frame */
-.gr-widget > div,
-.gr-widget [class*="container"],
-.gr-widget [class*="wrapper"] {
-  background-color: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-.gr-widget iframe {
-  width: 100% !important;
-  max-width: 100% !important;
-  border: 0 !important;
-}
-
-/* Widget-specific frames: strip so only our themed card frames the reviews */
-.gr-widget .sk-google-reviews,
-.gr-widget .sk-posts-container,
-.gr-widget .sk-carousel,
-.gr-widget .sk-slider {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-.gr-widget .sk-slider__btn {
-  background-color: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--primary) !important;
-}
-
-.gr-widget .sk-slider__btn:hover {
-  border-color: var(--brand-red) !important;
-  color: var(--brand-red) !important;
-}
-
-.gr-widget .sk_branding {
-  opacity: 0.6;
-}
-
-/* Slides are just spacing wrappers; the post itself is the card */
-.gr-widget .sk-slide-item {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-.gr-widget .sk-post,
-.gr-widget .sk-badge {
-  background-color: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 1.25rem !important;
-  box-shadow: none !important;
-}
-
-.gr-widget .sk-post__footer {
-  border-color: var(--border) !important;
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

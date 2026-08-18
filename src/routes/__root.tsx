@@ -77,6 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#123B32" },
       { title: "Passy Dental Clinic — Modern Dentistry in Isolo, Lagos" },
       {
         name: "description",
@@ -91,19 +92,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Passy Dental Clinic at Jakande Gate, Isolo offers general dentistry, whitening, implants, orthodontics and pediatric care in a calm, modern setting.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:url", content: "https://passydentalclinic.com/" },
+      { property: "og:locale", content: "en_NG" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Passy Dental Clinic — Modern Dentistry in Isolo, Lagos" },
       { name: "twitter:description", content: "Passy Dental Clinic at Jakande Gate, Isolo offers general dentistry, whitening, implants, orthodontics and pediatric care in a calm, modern setting." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/neBCJCRC6AUoHp7TFpIi150gBRc2/social-images/social-1785155960187-EDrop_1745888137547.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/neBCJCRC6AUoHp7TFpIi150gBRc2/social-images/social-1785155960187-EDrop_1745888137547.webp" },
+      { property: "og:image", content: "https://passydentalclinic.com/images/og-image.jpg" },
+      { name: "twitter:image", content: "https://passydentalclinic.com/images/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Passy Dental Clinic, Jakande Gate, Isolo" },
     ],
     links: [
+      { rel: "canonical", href: "https://passydentalclinic.com/" },
+      // Preloaded because it's the largest above-the-fold image (LCP
+      // candidate); without this the browser only discovers it once React
+      // has hydrated and rendered the <img> tag, well after first paint.
+      {
+        rel: "preload",
+        as: "image",
+        href: "/images/hero.jpg",
+        fetchPriority: "high",
+      },
+      {
+        rel: "icon",
+        href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231F5E4E'/%3E%3Cpath d='M16 7c-3 0-4-1.5-6.5-1.5S6 8 6 11c0 4 1.5 6 2.5 9s1 5 2.5 5 1.5-4 2-6 1.5-2.5 3-2.5 2.5.5 3 2.5 0 6 2 6 1.5-2 2.5-5S26 15 26 11c0-3-1-5.5-3.5-5.5S19 7 16 7z' fill='%23fff'/%3E%3Ccircle cx='22' cy='12' r='2.5' fill='%23e5544b'/%3E%3C/svg%3E",
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
       {
         rel: "stylesheet",

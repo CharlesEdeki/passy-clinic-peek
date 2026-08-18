@@ -7,9 +7,15 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Static site: pre-render every route to HTML at build time (see docs/architecture.md).
+  // nitro: false skips the Cloudflare Worker deploy artifact and lets TanStack Start's own
+  // SSR build emit dist/server, which the prerenderer's preview server expects to find.
+  nitro: false,
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
+    prerender: {
+      enabled: true,
+      autoStaticPathsDiscovery: true,
+      crawlLinks: true,
+    },
   },
 });
