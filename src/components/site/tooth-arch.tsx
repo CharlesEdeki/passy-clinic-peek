@@ -5,6 +5,20 @@ import { cn } from "@/lib/utils";
 
 const TEETH_PER_ARCH = 16;
 
+/**
+ * Math.sin/cos aren't required to be bit-identical across JS engines --
+ * IEEE 754 doesn't mandate correctly-rounded transcendental functions, so
+ * the last digit can legitimately differ between the Node process that
+ * pre-renders this page and the browser hydrating it. That single-ULP
+ * difference is enough for React to flag a hydration mismatch on every
+ * coordinate. Rounding to a fixed precision after the trig call collapses
+ * both environments onto the same literal; 3 decimals is far finer than a
+ * 340x300 viewBox can render, so nothing is visually lost.
+ */
+function round(n: number) {
+  return Math.round(n * 1000) / 1000;
+}
+
 type Tooth = {
   id: string;
   label: string;
@@ -38,11 +52,11 @@ function buildArch(centerY: number, radiusX: number, radiusY: number, upper: boo
     return {
       id: `${upper ? "u" : "l"}${index}`,
       label: `${upper ? "Upper" : "Lower"} ${index < 8 ? "right" : "left"} ${region}`,
-      x: x - width / 2,
-      y: y - height / 2,
+      x: round(x - width / 2),
+      y: round(y - height / 2),
       width,
       height,
-      rotation: degrees,
+      rotation: round(degrees),
     };
   });
 }

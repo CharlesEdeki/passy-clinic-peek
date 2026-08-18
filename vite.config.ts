@@ -1,21 +1,49 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, nitro (build-only using cloudflare as a default target),
-//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
-//     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import tailwindcss from "@tailwindcss/vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tsConfigPaths from "vite-tsconfig-paths";
 
+/**
+ * This project builds to static HTML (see docs/architecture.md) --
+ * `tanstackStart({ prerender: ... })` renders every route at build time and
+ * there is no server runtime in production, so there is no Nitro plugin
+ * here and no server entry to redirect.
+ */
 export default defineConfig({
-  // Static site: pre-render every route to HTML at build time (see docs/architecture.md).
-  // nitro: false skips the Cloudflare Worker deploy artifact and lets TanStack Start's own
-  // SSR build emit dist/server, which the prerenderer's preview server expects to find.
-  nitro: false,
-  tanstackStart: {
-    prerender: {
-      enabled: true,
-      autoStaticPathsDiscovery: true,
-      crawlLinks: true,
-    },
+  plugins: [
+    tailwindcss(),
+    // Resolves the "@/*" -> "./src/*" alias from tsconfig.json's `paths`,
+    // so no separate resolve.alias entry is needed for it.
+    tsConfigPaths({ projects: ["./tsconfig.json"] }),
+    tanstackStart({
+      prerender: {
+        enabled: true,
+        autoStaticPathsDiscovery: true,
+        crawlLinks: true,
+      },
+    }),
+    viteReact(),
+  ],
+
+  resolve: {
+    // Multiple copies of these across the dependency tree cause subtle bugs
+    // (two React instances, broken Context, TanStack Query cache misses) --
+    // force everything to resolve to one.
+    dedupe: [
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+      "@tanstack/react-query",
+      "@tanstack/query-core",
+    ],
+  },
+
+  server: {
+    port: 8080,
+    // Vite rejects requests whose Host header it doesn't recognise, which
+    // breaks VS Code port forwarding and devtunnel-style tunnels.
+    allowedHosts: [".devtunnels.ms", ".ngrok-free.app", ".trycloudflare.com"],
   },
 });
