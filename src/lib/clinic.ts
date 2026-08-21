@@ -212,10 +212,11 @@ export const NAV_LINKS = [
 export type CaseStudy = { id: string; title: string; meta: string };
 
 export const CASES: CaseStudy[] = [
-  // No photos yet for these two -- commented out rather than deleted, so
-  // the real content (and the id -> filename mapping) is right here to
-  // restore the moment case-1/case-2 before/after photos exist.
-  // { id: "case-1", title: "Composite bonding, upper four", meta: "Two visits · 2024" },
+  { id: "case-1", title: "Composite buildup", meta: "Restored tooth structure" },
+
+  // No photo yet for whitening -- commented out rather than deleted, so the
+  // real content (and the id -> filename mapping) is right here to restore
+  // the moment case-2 before/after photos exist.
   // { id: "case-2", title: "Professional whitening", meta: "Single session · 2025" },
 
   // title/meta below are grounded in the real photos supplied for each case;
