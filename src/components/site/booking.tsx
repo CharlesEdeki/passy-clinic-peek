@@ -30,7 +30,8 @@ const SERVICE_OPTIONS = [
 ];
 
 const PROMISES = [
-  "Same-day slots often available for pain",
+  "Same-day slots often available for booking",
+  "Team replies 24/7, Monday to Sunday",
   "HMO enrolees verified before treatment",
   "Child-friendly, fear-free approach",
 ];

@@ -128,9 +128,9 @@ function CaseSlider({ study }: { study: CaseStudy }) {
         )}
       </div>
 
-      <div className="px-[22px] py-5">
-        <b className="block text-base">{study.title}</b>
-        <span className="text-[0.88rem] text-muted-foreground">{study.meta}</span>
+      <div className="px-[22px] py-4">
+        <b className="block text-[0.92rem]">{study.title}</b>
+        <span className="text-[0.8rem] text-muted-foreground">{study.meta}</span>
       </div>
     </article>
   );

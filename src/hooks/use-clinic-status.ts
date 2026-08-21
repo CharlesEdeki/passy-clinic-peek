@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { CLOSES_MINUTES, OPENS_MINUTES } from "@/lib/clinic";
+import {
+  SUNDAY_CLOSES_MINUTES,
+  SUNDAY_OPENS_MINUTES,
+  WEEKDAY_CLOSES_MINUTES,
+  WEEKDAY_OPENS_MINUTES,
+} from "@/lib/clinic";
 
 export type ClinicStatus = {
   /** 0 = Sunday, matching Date#getDay and the HOURS table. */
@@ -37,23 +42,39 @@ function readLagosClock() {
   };
 }
 
+/** Sunday keeps its own shorter, later window; every other day shares one. */
+function windowFor(day: number) {
+  return day === 0
+    ? { opens: SUNDAY_OPENS_MINUTES, closes: SUNDAY_CLOSES_MINUTES }
+    : { opens: WEEKDAY_OPENS_MINUTES, closes: WEEKDAY_CLOSES_MINUTES };
+}
+
+/** 510 -> "8:30am", 1200 -> "8pm" (on-the-hour times drop the ":00"). */
+function formatMinutes(totalMinutes: number) {
+  let hour = Math.floor(totalMinutes / 60);
+  const minute = totalMinutes % 60;
+  const period = hour >= 12 ? "pm" : "am";
+  hour = hour % 12 || 12;
+  return minute === 0 ? `${hour}${period}` : `${hour}:${String(minute).padStart(2, "0")}${period}`;
+}
+
 function describe(day: number, minutes: number): ClinicStatus {
-  const isWorkingDay = day >= 1;
-  const open = isWorkingDay && minutes >= OPENS_MINUTES && minutes < CLOSES_MINUTES;
+  const { opens, closes } = windowFor(day);
+  const open = minutes >= opens && minutes < closes;
 
-  if (open) return { day, open, label: "Open now — closes 6:00pm" };
-
-  // Sunday, or Saturday once we've shut for the day: next opening is Monday.
-  const nextIsMonday = day === 0 || (day === 6 && minutes >= CLOSES_MINUTES);
-  if (nextIsMonday) {
-    return { day, open, label: "Closed — opens Monday 8:00am" };
+  if (open) {
+    return { day, open, label: `Open now — closes ${formatMinutes(closes)}` };
   }
 
-  return {
-    day,
-    open,
-    label: minutes < OPENS_MINUTES ? "Closed — opens 8:00am" : "Closed — opens 8:00am tomorrow",
-  };
+  if (minutes < opens) {
+    return { day, open, label: `Closed — opens ${formatMinutes(opens)}` };
+  }
+
+  // Already past today's window. The next one is tomorrow's, which may run
+  // a different schedule -- this is what makes a Saturday-evening visitor
+  // correctly see "opens 3pm" (Sunday's time) rather than a Monday time.
+  const next = windowFor((day + 1) % 7);
+  return { day, open, label: `Closed — opens ${formatMinutes(next.opens)} tomorrow` };
 }
 
 /**

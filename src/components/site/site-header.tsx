@@ -41,7 +41,15 @@ export function SiteHeader() {
             href="#top"
             className="flex items-center gap-2 shrink-0"
           >
-            <PassyLogo className="h-16 w-auto" />
+            <PassyLogo
+              className={cn(
+                "w-auto transition-[height] duration-300 ease-brand",
+                // Bigger on first paint, settling to the compact size once
+                // the header has something to sit against (the bg/blur/
+                // border switch just below reads the same scroll state).
+                stuck ? "h-20" : "h-24",
+              )}
+            />
           </a>
 
           <nav className="hidden items-center gap-[30px] lg:flex">

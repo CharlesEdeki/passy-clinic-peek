@@ -30,7 +30,7 @@ const STRUCTURED_DATA = {
   priceRange: "₦₦",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Jakande Gate, Isolo",
+    streetAddress: "2nd Floor, Crystal Computer & Shopping Mall, Jakande Gate Bus-stop, Isheri-Oshun Rd",
     addressLocality: "Isolo",
     addressRegion: "Lagos",
     addressCountry: "NG",
@@ -40,8 +40,14 @@ const STRUCTURED_DATA = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "08:00",
-      closes: "18:00",
+      opens: "08:30",
+      closes: "20:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Sunday"],
+      opens: "15:00",
+      closes: "19:30",
     },
   ],
   medicalSpecialty: "Dentistry",

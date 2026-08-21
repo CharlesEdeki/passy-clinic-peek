@@ -25,8 +25,8 @@ export const MAP_EMBED_URL =
 /** Verified against the Maps listing; the previous values were ~750m out. */
 export const GEO = { latitude: 6.530052, longitude: 3.304714 };
 export const ADDRESS_LINES = [
-  "Crystall Computer & Shopping Mall,",
-  "Jakande Gate Bus-stop, Isheri Oshun Rd,",
+  "2nd Floor, Crystal Computer & Shopping Mall,",
+  "Jakande Gate Bus-stop, Isheri-Oshun Rd,",
   "Isolo, Lagos 102214, Nigeria.",
 ];
 
@@ -136,17 +136,20 @@ export const FAQS: Faq[] = [
 
 /** Indexed by JS day number, Sunday first. */
 export const HOURS: ReadonlyArray<readonly [string, string]> = [
-  ["Sunday", "Closed"],
-  ["Monday", "8:00am – 6:00pm"],
-  ["Tuesday", "8:00am – 6:00pm"],
-  ["Wednesday", "8:00am – 6:00pm"],
-  ["Thursday", "8:00am – 6:00pm"],
-  ["Friday", "8:00am – 6:00pm"],
-  ["Saturday", "8:00am – 6:00pm"],
+  ["Sunday", "3:00pm – 7:30pm"],
+  ["Monday", "8:30am – 8:00pm"],
+  ["Tuesday", "8:30am – 8:00pm"],
+  ["Wednesday", "8:30am – 8:00pm"],
+  ["Thursday", "8:30am – 8:00pm"],
+  ["Friday", "8:30am – 8:00pm"],
+  ["Saturday", "8:30am – 8:00pm"],
 ];
 
-export const OPENS_MINUTES = 8 * 60;
-export const CLOSES_MINUTES = 18 * 60;
+/** Mon–Sat run one schedule; Sunday runs shorter, later hours. */
+export const WEEKDAY_OPENS_MINUTES = 8 * 60 + 30;
+export const WEEKDAY_CLOSES_MINUTES = 20 * 60;
+export const SUNDAY_OPENS_MINUTES = 15 * 60;
+export const SUNDAY_CLOSES_MINUTES = 19 * 60 + 30;
 
 export type HmoPartner = {
   name: string;
@@ -161,9 +164,17 @@ export type HmoPartner = {
    * height would make one tiny. Both land at roughly 130px wide.
    */
   logoHeight?: number;
+  /**
+   * "in-progress" partners render in their own muted row below the
+   * confirmed ones, with an explicit note -- so a visitor is never told a
+   * partner covers them before that is actually true. Omit for confirmed
+   * partners.
+   */
+  status?: "in-progress";
 };
 
 export const HMO_PARTNERS: HmoPartner[] = [
+  // Confirmed and live.
   {
     name: "Grooming Health HMO",
     fullName: "Grooming Health Management Limited",
@@ -171,11 +182,21 @@ export const HMO_PARTNERS: HmoPartner[] = [
     logoHeight: 56,
   },
   {
+    name: "Clearline HMO",
+    logo: "/images/hmo-clearline.png",
+    logoHeight: 32,
+  },
+  {
+    name: "MassLife Healthcare",
+    logo: "/images/hmo-masslife.png",
+    logoHeight: 52,
+  },
+  {
     name: "Reliance HMO",
     logo: "/images/hmo-reliance.png",
     logoHeight: 26,
+    status: "in-progress",
   },
-  { name: "Pay as you go" },
 ];
 
 export const NAV_LINKS = [
@@ -191,8 +212,16 @@ export const NAV_LINKS = [
 export type CaseStudy = { id: string; title: string; meta: string };
 
 export const CASES: CaseStudy[] = [
-  { id: "case-1", title: "Composite bonding, upper four", meta: "Two visits · 2024" },
-  { id: "case-2", title: "Professional whitening", meta: "Single session · 2025" },
-  { id: "case-3", title: "Fixed braces, 14 months", meta: "Orthodontics · 2023–2024" },
-  { id: "case-4", title: "Scaling and polishing", meta: "One visit · 2025" },
+  // No photos yet for these two -- commented out rather than deleted, so
+  // the real content (and the id -> filename mapping) is right here to
+  // restore the moment case-1/case-2 before/after photos exist.
+  // { id: "case-1", title: "Composite bonding, upper four", meta: "Two visits · 2024" },
+  // { id: "case-2", title: "Professional whitening", meta: "Single session · 2025" },
+
+  // title/meta below are grounded in the real photos supplied for each case;
+  // where a specific date or visit count wasn't given, a generic accurate
+  // description is used rather than an invented figure.
+  { id: "case-3", title: "Orthodontic treatment, braces removed", meta: "Full course completed" },
+  { id: "case-4", title: "Scaling and polishing", meta: "Routine scale and polish" },
+  { id: "case-5", title: "Root canal treatment + crown", meta: "Single tooth restored" },
 ];

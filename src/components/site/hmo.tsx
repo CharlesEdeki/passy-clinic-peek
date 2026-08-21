@@ -8,28 +8,39 @@ const TILE = "flex h-24 w-52 shrink-0 items-center justify-center rounded-2xl bg
 
 function PartnerTile({ partner }: { partner: HmoPartner }) {
   const [logoFailed, setLogoFailed] = useState(false);
+  const comingSoon = partner.status === "in-progress";
 
   // Logos are dark on light, so they need a white tile to read against the
-  // band. Anything without one — or whose file is missing — gets a pill, which
-  // degrades to readable text rather than an empty white box.
-  if (!partner.logo || logoFailed) {
-    return (
-      <li className="flex h-24 items-center rounded-full border border-white/[0.16] bg-white/[0.08] px-6 text-[0.95rem] font-semibold">
+  // band. Anything without one — or whose file is missing — gets a pill,
+  // which degrades to readable text rather than an empty box. Every tile
+  // gets the same solid white treatment regardless of status -- the "not
+  // confirmed yet" signal is the caption underneath, not a faded logo.
+  const content =
+    !partner.logo || logoFailed ? (
+      <div className="flex h-24 items-center rounded-full border border-white/[0.16] bg-white/[0.08] px-6 text-[0.95rem] font-semibold">
         {partner.name}
-      </li>
+      </div>
+    ) : (
+      <div className={TILE}>
+        <img
+          src={partner.logo}
+          alt={partner.fullName ?? partner.name}
+          loading="lazy"
+          onError={() => setLogoFailed(true)}
+          style={{ maxHeight: partner.logoHeight ?? 48 }}
+          className="max-w-full object-contain"
+        />
+      </div>
     );
-  }
 
   return (
-    <li className={TILE}>
-      <img
-        src={partner.logo}
-        alt={partner.fullName ?? partner.name}
-        loading="lazy"
-        onError={() => setLogoFailed(true)}
-        style={{ maxHeight: partner.logoHeight ?? 48 }}
-        className="max-w-full object-contain"
-      />
+    <li className="flex flex-col items-center gap-2">
+      {content}
+      {comingSoon && (
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.13em] text-white/50">
+          Coming soon
+        </span>
+      )}
     </li>
   );
 }
@@ -50,7 +61,7 @@ export function Hmo() {
         </Reveal>
 
         <Reveal delay={1}>
-          <ul className="mt-9 flex flex-wrap items-center gap-4">
+          <ul className="mt-9 flex flex-wrap items-start gap-4">
             {HMO_PARTNERS.map((partner) => (
               <PartnerTile key={partner.name} partner={partner} />
             ))}

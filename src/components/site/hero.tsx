@@ -1,12 +1,14 @@
+import { MapPin, Phone } from "lucide-react";
+
 import { ToothArch } from "@/components/site/tooth-arch";
 import { useClinicStatus } from "@/hooks/use-clinic-status";
-import { PHONE_HREF } from "@/lib/clinic";
+import { MAPS_URL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/clinic";
 import { cn } from "@/lib/utils";
 
 const TRUST = [
   { value: "12+", label: "Years in Isolo" },
   { value: "8,000+", label: "Patients seen" },
-  { value: "Mon–Sat", label: "8am – 6pm" },
+  { value: "Mon–Sat", label: "8:30am – 8pm" },
 ];
 
 export function Hero() {
@@ -41,9 +43,33 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-[56ch] text-[1.05rem] text-muted-foreground">
-            A calm, modern clinic at Jakande Gate, Isolo. General care, braces, whitening and
-            pediatric dentistry — with HMO enrolees welcome and same-day slots for pain.
+            A calm, modern, serene clinic on the 2nd floor of Crystal Computer &amp; Shopping
+            Mall, Jakande Gate Bus-stop, along Isheri-Oshun Road, Isolo. General care, braces,
+            whitening and pediatric dentistry — with HMO enrolees welcome and same-day slots for
+            booking.
           </p>
+
+          {/* Phone and address get their own larger, scannable line — the
+              paragraph above carries the full address for context and SEO,
+              this is the "glance at it and go" version. */}
+          <div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-2.5">
+            <a
+              href={PHONE_HREF}
+              className="flex items-center gap-2 text-[1.2rem] font-bold text-theatre underline-offset-4 transition-colors hover:text-theatre-deep hover:underline"
+            >
+              <Phone className="size-[19px]" strokeWidth={2.2} aria-hidden="true" />
+              {PHONE_DISPLAY}
+            </a>
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[1.02rem] font-semibold text-foreground underline-offset-4 transition-colors hover:text-theatre hover:underline"
+            >
+              <MapPin className="size-[18px] text-coral" strokeWidth={2.2} aria-hidden="true" />
+              2nd Floor, Crystal Mall, Jakande Gate Bus-stop, Isolo
+            </a>
+          </div>
 
           <div className="mt-9 flex flex-wrap gap-3.5">
             <a
@@ -51,12 +77,6 @@ export function Hero() {
               className="inline-flex items-center gap-2.5 rounded-full bg-theatre px-[26px] py-3.5 text-[0.97rem] font-semibold text-white shadow-[var(--shadow-cta)] transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-theatre-deep"
             >
               Book an appointment
-            </a>
-            <a
-              href={PHONE_HREF}
-              className="inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-border px-[26px] py-3.5 text-[0.97rem] font-semibold transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-theatre hover:bg-white"
-            >
-              Call the clinic
             </a>
           </div>
 
