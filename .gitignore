@@ -37,3 +37,6 @@ docs
 .env
 .env.*
 !.env.example
+
+# Regenerated on every build by scripts/generate-cases.mjs
+src/lib/cases.generated.ts

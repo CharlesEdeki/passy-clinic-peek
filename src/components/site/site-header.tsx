@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "@tanstack/react-router";
 
 import { PassyLogo } from "@/components/site/primitives";
 import { useActiveSection } from "@/hooks/use-active-section";
@@ -11,6 +12,12 @@ export function SiteHeader() {
   const [stuck, setStuck] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const active = useActiveSection(SECTION_IDS);
+  const { pathname } = useLocation();
+  // These links point at sections that only exist on the homepage. From
+  // anywhere else, a bare "#services" would try (and fail) to scroll the
+  // current page, so it needs the "/" prefix to navigate home first.
+  const isHome = pathname === "/";
+  const toSection = (hash: string) => (isHome ? hash : `/${hash}`);
 
   useEffect(() => {
     const onScroll = () => setStuck(window.scrollY > 20);
@@ -37,10 +44,7 @@ export function SiteHeader() {
         )}
       >
         <div className="mx-auto flex h-(--header-h) max-w-[1180px] items-center justify-between px-6">
-          <a
-            href="#top"
-            className="flex items-center gap-2 shrink-0"
-          >
+          <a href={isHome ? "#top" : "/"} className="flex items-center gap-2 shrink-0">
             <PassyLogo
               className={cn(
                 "w-auto transition-[height] duration-300 ease-brand",
@@ -54,11 +58,11 @@ export function SiteHeader() {
 
           <nav className="hidden items-center gap-[30px] lg:flex">
             {NAV_LINKS.map((link) => {
-              const isActive = active === link.href.slice(1);
+              const isActive = isHome && active === link.href.slice(1);
               return (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={toSection(link.href)}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
                     "relative py-1 text-[0.93rem] font-medium text-muted-foreground transition-colors after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-coral after:transition-[width] after:duration-300 hover:text-foreground",
@@ -70,7 +74,7 @@ export function SiteHeader() {
               );
             })}
             <a
-              href="#book"
+              href={toSection("#book")}
               className="inline-flex items-center rounded-full bg-theatre px-[22px] py-[11px] text-[0.97rem] font-semibold text-white shadow-[var(--shadow-cta)] transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-theatre-deep"
             >
               Book appointment
@@ -118,7 +122,7 @@ export function SiteHeader() {
         {NAV_LINKS.map((link) => (
           <a
             key={link.href}
-            href={link.href}
+            href={toSection(link.href)}
             onClick={() => setDrawerOpen(false)}
             className="block border-b border-border py-[15px] text-[1.1rem] font-medium"
           >
@@ -126,7 +130,7 @@ export function SiteHeader() {
           </a>
         ))}
         <a
-          href="#book"
+          href={toSection("#book")}
           onClick={() => setDrawerOpen(false)}
           className="mt-[22px] inline-flex items-center rounded-full bg-theatre px-[26px] py-3.5 font-semibold text-white"
         >

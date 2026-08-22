@@ -1,17 +1,23 @@
+import { useLocation } from "@tanstack/react-router";
+
 import { EMAIL, MAPS_URL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_NUMBER } from "@/lib/clinic";
 
 const CLINIC_LINKS = [
   { href: "#services", label: "Services" },
-  { href: "#gallery", label: "Before & after" },
+  { href: "#results", label: "Before & after" },
   { href: "#hmo", label: "HMO & payment" },
   { href: "#reviews", label: "Reviews" },
   { href: "#faq", label: "Questions" },
 ];
 
-const linkClass =
-  "block py-1.5 text-white/60 transition-colors duration-200 hover:text-white";
+const linkClass = "block py-1.5 text-white/60 transition-colors duration-200 hover:text-white";
 
 export function SiteFooter() {
+  // These link to homepage sections. From any other page a bare "#services"
+  // would try to scroll the current page instead of navigating home first.
+  const isHome = useLocation({ select: (location) => location.pathname }) === "/";
+  const toSection = (hash: string) => (isHome ? hash : `/${hash}`);
+
   return (
     <footer className="bg-theatre pb-8 pt-18 text-[0.9rem] text-white/60">
       <div className="mx-auto max-w-[1180px] px-6">
@@ -30,10 +36,13 @@ export function SiteFooter() {
               Clinic
             </h2>
             {CLINIC_LINKS.map((link) => (
-              <a key={link.href} href={link.href} className={linkClass}>
+              <a key={link.href} href={toSection(link.href)} className={linkClass}>
                 {link.label}
               </a>
             ))}
+            <a href="/gallery" className={linkClass}>
+              Full gallery
+            </a>
           </nav>
 
           <nav aria-label="Reach us">

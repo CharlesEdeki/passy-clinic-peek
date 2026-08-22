@@ -202,27 +202,21 @@ export const HMO_PARTNERS: HmoPartner[] = [
 export const NAV_LINKS = [
   { href: "#services", label: "Services" },
   { href: "#reviews", label: "Reviews" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "#results", label: "Results" },
   { href: "#hmo", label: "HMO" },
   { href: "#faq", label: "Questions" },
   { href: "#visit", label: "Visit" },
 ];
 
+/** How many cases the homepage teaser shows before offering "View full gallery". */
+export const RESULTS_TEASER_LIMIT = 4;
+
 /** Before/after pairs. Drop consented photos into public/images/ to light these up. */
 export type CaseStudy = { id: string; title: string; meta: string };
 
-export const CASES: CaseStudy[] = [
-  { id: "case-1", title: "Composite buildup", meta: "Restored tooth structure" },
-
-  // No photo yet for whitening -- commented out rather than deleted, so the
-  // real content (and the id -> filename mapping) is right here to restore
-  // the moment case-2 before/after photos exist.
-  // { id: "case-2", title: "Professional whitening", meta: "Single session · 2025" },
-
-  // title/meta below are grounded in the real photos supplied for each case;
-  // where a specific date or visit count wasn't given, a generic accurate
-  // description is used rather than an invented figure.
-  { id: "case-3", title: "Orthodontic treatment, braces removed", meta: "Full course completed" },
-  { id: "case-4", title: "Scaling and polishing", meta: "Routine scale and polish" },
-  { id: "case-5", title: "Root canal treatment + crown", meta: "Single tooth restored" },
-];
+/**
+ * Auto-generated at build time from public/images/ -- see
+ * scripts/generate-cases.mjs for how a case gets added or removed. Nothing
+ * in this file needs editing when a new case photo pair is added.
+ */
+export { GENERATED_CASES as CASES } from "./cases.generated";
